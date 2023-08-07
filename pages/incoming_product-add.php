@@ -111,8 +111,8 @@ include "../template/header.php";
 
             use GuzzleHttp\Client;
 
-            $baseUri = 'http://localhost:8091';
-            $baseUriTransaction = 'http://localhost:8093'; // Ganti dengan base URL API Anda
+            $baseUri = 'http://103.183.74.79:8091';
+            $baseUriTransaction = 'http://103.176.78.115:8093'; // Ganti dengan base URL API Anda
             if (isset($_GET["fproduct"])) {
               $endpoint = '/api/product/name/' . $_GET["fproduct"];
             } else{

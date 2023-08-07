@@ -78,7 +78,7 @@
     use GuzzleHttp\Exception\RequestException;
 
     // URL dari API Spring Boot
-    $api_url = 'http://localhost:8090/auth/login';
+    $api_url = 'http://103.183.74.79:8090/auth/login';
     // $client = new Client();
 
     // $response = $client->get($api_url);

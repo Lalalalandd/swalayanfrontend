@@ -65,7 +65,7 @@ include "../template/header.php";
 
                 use GuzzleHttp\Client;
 
-                $baseUri = 'http://localhost:8091/'; // Ganti dengan base URL API Anda
+                $baseUri = 'http://103.183.74.79:8091'; // Ganti dengan base URL API Anda
                 $endpoint = '/api/product'; // Ganti dengan endpoint untuk menambahkan data employee
 
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

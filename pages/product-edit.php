@@ -62,7 +62,7 @@
                
                use GuzzleHttp\Client;
                
-               $baseUri = 'http://localhost:8091'; // Ganti dengan base URL API Anda
+               $baseUri = 'http://103.183.74.79:8091'; // Ganti dengan base URL API Anda
                $productId = $_GET['edit']; // Ganti dengan ID employee yang akan diupdate
                $endpoint = '/api/product/' . $productId; // Ganti dengan endpoint untuk mengupdate data employee
                

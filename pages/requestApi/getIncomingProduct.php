@@ -51,7 +51,7 @@ if (isset($_GET['delete'])) {
 
 function deleteIncomingProductById($id_incomingproduct)
 {
-    $baseUri = 'http://localhost:8093'; // Ganti dengan base URL API yang sesuai
+    $baseUri = 'http://103.176.78.115:8093'; // Ganti dengan base URL API yang sesuai
     $endpoint = '/api/incoming-products/' . $id_incomingproduct; // Ganti dengan endpoint sesuai dengan API yang Anda gunakan
 
     $client = new \GuzzleHttp\Client(['base_uri' => $baseUri]);

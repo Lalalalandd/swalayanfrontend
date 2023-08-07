@@ -63,7 +63,7 @@ include "../template/header.php";
 
                 use GuzzleHttp\Client;
 
-                $baseUri = 'http://localhost:8090'; // Ganti dengan base URL API Anda
+                $baseUri = 'http://103.183.74.79:8090'; // Ganti dengan base URL API Anda
                 $employeeId = $_GET['edit']; // Ganti dengan ID employee yang akan diupdate
                 $endpoint = '/api/employee/' . $employeeId; // Ganti dengan endpoint untuk mengupdate data employee
 

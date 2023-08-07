@@ -4,9 +4,9 @@ require '../vendor/autoload.php';
 use GuzzleHttp\Exception\RequestException;
 
 if (isset($_GET["fnip"]) && $_GET["fnip"] != "") {
-    $employeeEndpoint = 'http://localhost:8090/api/employee/' . $_GET["fnip"];
+    $employeeEndpoint = 'http://103.183.74.79:8090/api/employee/' . $_GET["fnip"];
 } else {
-    $employeeEndpoint = "http://localhost:8090/api/employee";
+    $employeeEndpoint = "http://103.183.74.79:8090/api/employee";
 }
 
 $client = new \GuzzleHttp\Client();
@@ -74,7 +74,7 @@ if (isset($_GET['delete'])) {
 
 function deletEmployeebyNIP($nip_employee)
 {
-    $baseUri = 'http://localhost:8090'; // Ganti dengan base URL API yang sesuai
+    $baseUri = 'http://103.183.74.79:8090'; // Ganti dengan base URL API yang sesuai
     $endpoint = '/api/employee/' . $nip_employee; // Ganti dengan endpoint sesuai dengan API yang Anda gunakan
 
     $client = new \GuzzleHttp\Client(['base_uri' => $baseUri]);

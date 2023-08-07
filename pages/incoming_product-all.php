@@ -110,8 +110,8 @@ include "../template/header.php";
 
             use GuzzleHttp\Client;
 
-            $baseUri = 'http://localhost:8093';
-            $baseUriTransaction = 'http://localhost:8093'; // Ganti dengan base URL API Anda
+            $baseUri = 'http://103.176.78.115:8093';
+            $baseUriTransaction = 'http://103.176.78.115:8093'; // Ganti dengan base URL API Anda
             if (isset($_GET["fnip"])) {
               $endpoint = '/api/incoming-products/nip/' . $_GET["fnip"];
             } else if (isset($_GET["inputYear"]) || isset($_GET["inputMonth"]) || isset($_GET["inputDate"])) {

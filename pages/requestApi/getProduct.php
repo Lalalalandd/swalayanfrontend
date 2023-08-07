@@ -5,9 +5,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
 if (isset($_GET["fnip"]) && $_GET["fnip"] != "") {
-    $productEndpoint = 'http://localhost:8091/api/product/' . $_GET["fnip"];
+    $productEndpoint = 'http://103.183.74.79:8091/api/product/' . $_GET["fnip"];
 } else {
-    $productEndpoint = "http://localhost:8091/api/product";
+    $productEndpoint = "http://103.183.74.79:8091/api/product";
 }
 
 $client = new \GuzzleHttp\Client();
@@ -68,7 +68,7 @@ if (isset($_GET['delete'])) {
 
 function deleteProductById($id_product)
 {
-    $baseUri = 'http://localhost:8091'; // Ganti dengan base URL API yang sesuai
+    $baseUri = 'http://103.183.74.79:8091'; // Ganti dengan base URL API yang sesuai
     $endpoint = '/api/product/' . $id_product; // Ganti dengan endpoint sesuai dengan API yang Anda gunakan
 
     $client = new \GuzzleHttp\Client(['base_uri' => $baseUri]);
