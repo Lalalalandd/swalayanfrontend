@@ -1,6 +1,6 @@
 // JavaScript code to handle the calculations and update the "checkedItems" and "totalPrice" elements
-const checkboxes = document.querySelectorAll('input[type="checkbox"][name="productCheckbox"]');
-const quantityInputs = document.querySelectorAll('input[type="number"][name="quantity"]');
+const checkboxes = document.querySelectorAll('input[type="checkbox"][name="productCheckbox[]"]');
+const quantityInputs = document.querySelectorAll('input[type="number"][name="stock[]"]');
 const checkedItemsSpan = document.getElementById("checkedItems");
 const totalPriceSpan = document.getElementById("totalPrice");
 
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const searchBtn = document.getElementById("searchButtonn");
+  const searchBtn = document.getElementById("searchButton");
   const dateSelect = document.getElementById("inputDate");
   const monthSelect = document.getElementById("inputMonth");
   const yearSelect = document.getElementById("inputYear");
