@@ -143,12 +143,12 @@ include "../template/header.php";
               $transactionItems = [];
               for ($i = 0; $i < count($_POST["productCheckbox"]); $i++) {
                 $transactionItems[] = [
-                  'id_product' => $_POST["productCheckbox"][$i],
+                  'id_product' => intval($_POST["productCheckbox"][$i]),
                   'quantity' => intval($_POST["stock"][$i])
                 ];
               }
               $newIncomingData = [
-                'nip' => $_SESSION['nip'],
+                'nip' => intval($_SESSION['nip']),
                 "transactionItems" => $transactionItems,
               ];
               $client = new Client(['base_uri' => $baseUriTransaction]);

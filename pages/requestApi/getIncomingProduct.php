@@ -6,7 +6,7 @@ use GuzzleHttp\Exception\RequestException;
 $transactionEndpoint = $endpoint; 
 $client = new \GuzzleHttp\Client();
 try {
-    // // Lakukan permintaan dengan Guzzle
+    // Lakukan permintaan dengan Guzzle
     // $response = $client->request('GET', $incomingEndpoint, [
     //     'headers' => [
     //         'Authorization' => 'Bearer ' . $_SESSION['accessToken'],
