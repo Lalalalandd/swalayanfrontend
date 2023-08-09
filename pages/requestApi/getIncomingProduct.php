@@ -6,7 +6,7 @@ use GuzzleHttp\Exception\RequestException;
 $transactionEndpoint = $endpoint; 
 $client = new \GuzzleHttp\Client();
 try {
-    // // Lakukan permintaan dengan Guzzle
+    // Lakukan permintaan dengan Guzzle
     // $response = $client->request('GET', $incomingEndpoint, [
     //     'headers' => [
     //         'Authorization' => 'Bearer ' . $_SESSION['accessToken'],
@@ -17,21 +17,37 @@ try {
     // $data = json_decode($response->getBody(), true);
 
     // Tampilkan data di halaman web
-    foreach ($productData as $incoming) {
+    if (isset ($productData["id_incomingproduct"])){
         echo '<tr>';
-        echo '<td>' . $incoming['id_incomingproduct'] . '</td>';
-        echo '<td>' . $incoming['nip'] . '</td>';
-        echo '<td>' . $incoming['day'] . '</td>';
-        echo '<td>' . $incoming['month'] . '</td>';
-        echo '<td>' . $incoming['year'] . '</td>';
-        echo '<td>' . $incoming['time'] . '</td>';
+        echo '<td>' . $productData['id_incomingproduct'] . '</td>';
+        echo '<td>' . $productData['nip'] . '</td>';
+        echo '<td>' . $productData['day'] . '</td>';
+        echo '<td>' . $productData['month'] . '</td>';
+        echo '<td>' . $productData['year'] . '</td>';
+        echo '<td>' . $productData['time'] . '</td>';
         echo '<td>
-            <button class="btn btn-info" style="margin-bottom: 0px; border: none; width: 100%;" data-toggle="modal" data-target="#detailsModal" onclick="showDetails(this)" data="' . str_replace("\"", "'", json_encode($incoming['transactionItems'])) . '">Details</button> 
+            <button class="btn btn-info" style="margin-bottom: 0px; border: none; width: 100%;" data-toggle="modal" data-target="#detailsModal" onclick="showDetails(this)" data="' . str_replace("\"", "'", json_encode($productData['transactionItems'])) . '">Details</button> 
             </td>';
-        echo '<td><a href="?delete=' . $incoming['id_incomingproduct'] . '" class="btn btn-danger">Delete</a></td>';
+        echo '<td><a href="?delete=' . $productData['id_incomingproduct'] . '" class="btn btn-danger">Delete</a></td>';
 
         echo '</tr>';
-    }
+    }else{
+            foreach ($productData as $incoming) {
+                echo '<tr>';
+                echo '<td>' . $incoming['id_incomingproduct'] . '</td>';
+                echo '<td>' . $incoming['nip'] . '</td>';
+                echo '<td>' . $incoming['day'] . '</td>';
+                echo '<td>' . $incoming['month'] . '</td>';
+                echo '<td>' . $incoming['year'] . '</td>';
+                echo '<td>' . $incoming['time'] . '</td>';
+                echo '<td>
+                    <button class="btn btn-info" style="margin-bottom: 0px; border: none; width: 100%;" data-toggle="modal" data-target="#detailsModal" onclick="showDetails(this)" data="' . str_replace("\"", "'", json_encode($incoming['transactionItems'])) . '">Details</button> 
+                    </td>';
+                echo '<td><a href="?delete=' . $incoming['id_incomingproduct'] . '" class="btn btn-danger">Delete</a></td>';
+
+                echo '</tr>';
+            }
+        }
 } catch (\GuzzleHttp\Exception\RequestException $e) {
     // Jika terjadi kesalahan saat melakukan permintaan, tangani di sini
     // if($e->getStatusCode() === 403){

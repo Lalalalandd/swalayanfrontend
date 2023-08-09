@@ -16,17 +16,9 @@ include "../template/header.php";
     </nav>
     <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-      <!-- Brand Logo -->
-      <a href="index.php" class="brand-link">
-        <img src="../dist/img/AdminLTELogo.png" alt="Swalayan Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Swalayan</span>
-      </a>
       <?php
       include "../template/sidebar.php";
       ?>
-    </aside>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -40,7 +32,7 @@ include "../template/header.php";
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Incoming Product</li>
+                <li class="breadcrumb-item active">All Incoming Product Transaction</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -53,7 +45,7 @@ include "../template/header.php";
         <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
           <div class="row" style="justify-content: space-evenly;">
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-5 col-6">
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
@@ -62,13 +54,13 @@ include "../template/header.php";
                   <p>Stock</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-bag"></i>
+                  <i class="fas fa-cart-plus"></i>
                 </div>
-                <a href="../pages/incoming_product-add.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="../pages/incoming_product-add.php" class="small-box-footer">Tambah Stok <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-5 col-6">
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
@@ -77,24 +69,9 @@ include "../template/header.php";
                   <p>Incoming Product Transaction</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
+                  <i class="fas fa-database"></i>
                 </div>
-                <a href="../pages/incoming_product-all.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-danger">
-                <div class="inner">
-                  <h3>Manage</h3>
-
-                  <p>Incoming Product Transaction</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
-                </div>
-                <a href="../pages/incoming_product-manage.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="../pages/incoming_product-all.php" class="small-box-footer">Lihat Semua Data Transaksi <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -119,7 +96,11 @@ include "../template/header.php";
               $month = isset($_GET["inputMonth"]) && trim($_GET["inputMonth"]) != "" ? "/" . $_GET["inputMonth"] : "";
               $date = isset($_GET["inputDate"]) && trim($_GET["inputDate"]) != "" ? "/" . $_GET["inputDate"] : "";
               $endpoint = '/api/incoming-products/date/' . $year . $month . $date;
-            } else {
+            } else if (isset($_GET["fid"])) {
+              $endpoint = '/api/incoming-products/' . $_GET["fid"];
+            }
+            
+            else {
               $endpoint = '/api/incoming-products/all';
             }
             $endpointAdd = '/api/incoming-products/add'; // Ganti dengan endpoint untuk mengupdate data employee
@@ -193,12 +174,21 @@ include "../template/header.php";
                     <div id="searchForm">
                       <div class="form-group" style="width: 100%;">
                         <select id="searchOption" class="form-control" name="">
+                          <option value="id" id="idOption">Find By Transaction ID</option>
                           <option value="nip" id="nipOption">Find By NIP</option>
                           <option value="date" id="dateOption">Find By Date</option>
                         </select>
                       </div>
 
                       <!-- Fields for "Find By NIP" option -->
+                      <div id="idFields">
+                        <div class="form-group" style="width: 100%;">
+                          <form action="" method="get">
+                          <input type="search" id="fid" name="fid" style="width: 100%;" placeholder="Transaction ID">
+                          </form>
+                        </div>
+                      </div>
+
                       <div id="nipFields">
                         <div class="form-group" style="width: 100%;">
                           <form action="" method="get">
@@ -229,7 +219,7 @@ include "../template/header.php";
                             </select>
                           </div>
                         </div>
-                        <div class="form-group col-md-1">
+                        <div class="form-group">
                           <button id="searchButton" type="submit" class="small-box bg-info" style="margin-bottom: 0px; border: none; height:100%; width: 100%">
                             <i class="fa fa-search"></i>
                           </button>
@@ -317,21 +307,29 @@ include "../template/header.php";
 
   <script>
     // Get the searchOption element
-    const searchOption = document.getElementById('searchOption');
-
-    // Get the productFields and dateFields elements
+    const idFields = document.getElementById('idFields');
     const nipFields = document.getElementById('nipFields');
     const dateFields = document.getElementById('dateFields');
+    const searchButton = document.getElementById('searchButton');
 
     // Function to toggle the display of fields based on the selected option
     function toggleFields() {
       const selectedValue = searchOption.value;
-      if (selectedValue === 'nip') {
+      if (selectedValue === 'id') {
+        idFields.style.display = 'block';
+        nipFields.style.display = 'none';
+        dateFields.style.display = 'none';
+        searchButton.style.display = 'none';
+      } else if (selectedValue === 'nip') {
+        idFields.style.display = 'none';
         nipFields.style.display = 'block';
         dateFields.style.display = 'none';
-      } else if (selectedValue === 'date') {
+        searchButton.style.display = 'none';
+      }else if (selectedValue === 'date') {
+        idFields.style.display = 'none';
         nipFields.style.display = 'none';
         dateFields.style.display = 'block';
+        searchButton.style.display = 'block';
       }
     }
 

@@ -1,8 +1,9 @@
 <?php
 require '../vendor/autoload.php';
+
 use GuzzleHttp\Exception\RequestException;
-            
-$transactionEndpoint = $endpoint; 
+
+$transactionEndpoint = $endpoint;
 $client = new \GuzzleHttp\Client();
 
 try {
@@ -13,27 +14,43 @@ try {
     //         'Content-Type' => 'application/json', 
     //     ]
     //     ]);
-  
+
     // $data = json_decode($response->getBody(), true);
 
     // Tampilkan data di halaman web
-    foreach ($productData as $transaction) {
-      echo '<tr>';
-      echo '<td>' . $transaction['id_trans'] . '</td>';
-      echo '<td>' . $transaction['nip'] . '</td>';
-      echo '<td>' . $transaction['day'] . '</td>';
-      echo '<td>' . $transaction['month'] . '</td>';
-      echo '<td>' . $transaction['year'] . '</td>';
-      echo '<td>' . $transaction['time'] . '</td>';
-      echo '<td>' . $transaction['total_amount'] . '</td>';
-      echo '<td>
-            <button class="btn btn-info" style="margin-bottom: 0px; border: none; width: 100%;" data-toggle="modal" data-target="#detailsModal" onclick="showDetails(this)" data="' . str_replace("\"", "'", json_encode($transaction['transactionItems'])) . '">Details</button> 
-            </td>';
+    if (isset($productData["id_trans"])) {
+        echo '<tr>';
+        echo '<td>' . $productData['id_trans'] . '</td>';
+        echo '<td>' . $productData['nip'] . '</td>';
+        echo '<td>' . $productData['day'] . '</td>';
+        echo '<td>' . $productData['month'] . '</td>';
+        echo '<td>' . $productData['year'] . '</td>';
+        echo '<td>' . $productData['time'] . '</td>';
+        echo '<td>' . $productData['total_amount'] . '</td>';
+        echo '<td>
+                <button class="btn btn-info" style="margin-bottom: 0px; border: none; width: 100%;" data-toggle="modal" data-target="#detailsModal" onclick="showDetails(this)" data="' . str_replace("\"", "'", json_encode($productData['transactionItems'])) . '">Details</button> 
+                </td>';
+        echo '<td><a href="?delete=' . $productData['id_trans'] . '" class="btn btn-danger">Delete</a></td>';
+
+        echo '</tr>';
+    } else {
+        foreach ($productData as $transaction) {
+            echo '<tr>';
+            echo '<td>' . $transaction['id_trans'] . '</td>';
+            echo '<td>' . $transaction['nip'] . '</td>';
+            echo '<td>' . $transaction['day'] . '</td>';
+            echo '<td>' . $transaction['month'] . '</td>';
+            echo '<td>' . $transaction['year'] . '</td>';
+            echo '<td>' . $transaction['time'] . '</td>';
+            echo '<td>' . $transaction['total_amount'] . '</td>';
+            echo '<td>
+                <button class="btn btn-info" style="margin-bottom: 0px; border: none; width: 100%;" data-toggle="modal" data-target="#detailsModal" onclick="showDetails(this)" data="' . str_replace("\"", "'", json_encode($transaction['transactionItems'])) . '">Details</button> 
+                </td>';
             echo '<td><a href="?delete=' . $transaction['id_trans'] . '" class="btn btn-danger">Delete</a></td>';
-      
-      echo '</tr>';
-  }
-   
+
+            echo '</tr>';
+        }
+    }
 } catch (\GuzzleHttp\Exception\RequestException $e) {
     // Jika terjadi kesalahan saat melakukan permintaan, tangani di sini
     echo "Error: " . $e->getMessage();
@@ -71,4 +88,3 @@ function deleteIncomingProductById($id_transaction)
         return false;
     }
 }
-

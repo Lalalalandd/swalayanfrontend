@@ -16,18 +16,9 @@ include "../template/header.php";
     </nav>
     <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-      <!-- Brand Logo -->
-      <a href="index.php" class="brand-link">
-        <img src="../dist/img/AdminLTELogo.png" alt="Swalayan Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Swalayan</span>
-      </a>
-
-      <?php
-      include "../template/sidebar.php";
-      ?>
-    </aside>
+    <?php
+    include "../template/sidebar.php";
+    ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -41,7 +32,7 @@ include "../template/header.php";
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Transaction</li>
+                <li class="breadcrumb-item active">Add Transaction</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -54,7 +45,7 @@ include "../template/header.php";
         <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
           <div class="row" style="justify-content: space-evenly;">
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-5 col-6">
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
@@ -63,13 +54,13 @@ include "../template/header.php";
                   <p>Transaction</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-bag"></i>
+                  <i class="fas fa-cart-plus"></i>
                 </div>
-                <a href="../pages/transaction-add.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="../pages/transaction-add.php" class="small-box-footer">Tambah Transaksi <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-5 col-6">
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
@@ -78,9 +69,9 @@ include "../template/header.php";
                   <p>Transaction</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
+                  <i class="fas fa-database"></i>
                 </div>
-                <a href="../pages/transaction-all.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="../pages/transaction-all.php" class="small-box-footer">Lihat Semua Data Transaksi <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -128,12 +119,12 @@ include "../template/header.php";
               $transactionItems = [];
               for ($i = 0; $i < count($_POST["productCheckbox"]); $i++) {
                 $transactionItems[] = [
-                  'id_product' => $_POST["productCheckbox"][$i],
+                  'id_product' => intval($_POST["productCheckbox"][$i]),
                   'quantity' => intval($_POST["stock"][$i])
                 ];
               }
               $newIncomingData = [
-                'nip' => $_SESSION['nip'],
+                'nip' => intval($_SESSION['nip']),
                 "transactionItems" => $transactionItems,
               ];
               $client = new Client(['base_uri' => $baseUriTransaction]);
@@ -200,7 +191,7 @@ include "../template/header.php";
                       $product_desc = $product['product_desc'];
                     ?>
                       <tr>
-                        <td><input type="checkbox" value="<?= $id ?>" name="productCheckbox[]" /></td> <!-- Add a checkbox for each row -->
+                        <td><input type="checkbox" value="<?= $id ?>" name="productCheckbox[]" class="checkbox"/></td> <!-- Add a checkbox for each row -->
                         <td><input type="number" name="stock[]" min="0" value="<?= $stock ?>" /></td>
                         <td><?= $id ?></td>
                         <td><?= $name ?></td>

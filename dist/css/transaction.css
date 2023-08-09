@@ -1,21 +1,25 @@
 /* Style for the quantity input field */
-  input[type="number"][name="quantity"] {
+  input[type="number"], input[name="quantity"] {
     width: 100%;
     text-align: center;
     border-radius: 5px;
     border-color: #00000046;
   }
 
-  input[type="text"] {
+  input[type="text"], input[type="search"] {
     width: 100%;
     border-radius: 5px;
     border-color: #00000046;
   }
 
   /* Style for the checkbox */
-  input[type="checkbox"][name="productCheckbox"] {
-    transform: scale(1.5);
+  .checkbox {
+    transform: scale(1.3);
     margin-right: 10px;
+  }
+
+  .checkbox:hover {
+    transform: scale(1.5);
   }
 
   .fixed-block {
