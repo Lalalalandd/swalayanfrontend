@@ -101,8 +101,6 @@ include "../template/header.php";
             else {
               $endpoint = '/api/transaction/all';
             }
-            // $endpointAdd = '/api/transaction/create'; // Ganti dengan endpoint untuk mengupdate data employee
-
 
             $client = new Client(['base_uri' => $baseUri]);
 
@@ -120,44 +118,6 @@ include "../template/header.php";
               echo 'Error: ' . $e->getMessage();
             }
 
-
-            // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //   $transactionItems = [];
-            //   for ($i = 0; $i < count($_POST["productCheckbox"]); $i++) {
-            //     $transactionItems[] = [
-            //       'id_product' => $_POST["productCheckbox"][$i],
-            //       'quantity' => intval($_POST["stock"][$i])
-            //     ];
-            //   }
-            //   $newIncomingData = [
-            //     'nip' => $_SESSION['nip'],
-            //     "transactionItems" => $transactionItems,
-            //   ];
-            //   $client = new Client(['base_uri' => $baseUriTransaction]);
-
-            //   try {
-            //     $response = $client->post($endpointAdd, [
-            //       'headers' => [
-            //         'Authorization' => 'Bearer ' . $_SESSION['accessToken'], // Ganti dengan token akses Anda
-            //         'Content-Type' => 'application/json',
-            //       ],
-            //       'json' => $newIncomingData,
-            //     ]);
-
-            //     $statusCode = $response->getStatusCode();
-            //     $responseData = json_decode($response->getBody(), true);
-
-            //     // Proses response jika perlu
-            //     if ($statusCode === 200) {
-
-            //       // Tambahan aksi jika perlu
-            //     } else {
-            //       echo 'Failed to add Incoming Product: ' . $responseData['message'];
-            //     }
-            //   } catch (\GuzzleHttp\Exception\RequestException $e) {
-            //     echo 'Error: ' . $e->getMessage();
-            //   }
-            // }
             ?>
 
 

@@ -96,7 +96,6 @@ include "../template/header.php";
             }
             $endpointAdd ='/api/incoming-products/add'; // Ganti dengan endpoint untuk mengupdate data employee
 
-
             $client = new Client(['base_uri' => $baseUri]);
 
             try {
@@ -152,7 +151,6 @@ include "../template/header.php";
               }
             }
             ?>
-
 
             <!-- Isi ne nde kene  -->
             <div class="card">

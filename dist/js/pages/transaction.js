@@ -62,55 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Generate options for the year (2000 to 2030)
-  generateOptions(2000, 2100, "inputYear");
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const searchBtn = document.getElementById("searchButton");
-  const dateSelect = document.getElementById("inputDate");
-  const monthSelect = document.getElementById("inputMonth");
-  const yearSelect = document.getElementById("inputYear");
-
-  // Disable the ability to search date without a year
-  dateSelect.addEventListener("change", function () {
-    if (dateSelect.value !== "" && yearSelect.value === "") {
-      alert("Please select a year before searching by date.");
-      dateSelect.value = "";
-    }
-  });
-
-  // Disable the ability to search month without a year
-  monthSelect.addEventListener("change", function () {
-    if (monthSelect.value !== "" && yearSelect.value === "") {
-      alert("Please select a year before searching by month.");
-      monthSelect.value = "";
-    }
-  });
-
-  // Disable the ability to search date and month without a year
-  searchBtn.addEventListener("click", function () {
-    if ((dateSelect.value !== "" || monthSelect.value !== "") && yearSelect.value === "") {
-      alert("Please select a year before searching by date or month.");
-      dateSelect.value = "";
-      monthSelect.value = "";
-    } else {
-      // Perform your search here
-      // Replace this with your actual search logic
-      alert("Performing search...");
-    }
-  });
-
-  searchBtn.addEventListener("click", function () {
-    if ((dateSelect.value !== "" || yearSelect.value !== "") && monthSelect.value === "") {
-      alert("Please select a month before searching by date or year.");
-      dateSelect.value = "";
-      yearSelect.value = "";
-    } else {
-      // Perform your search here
-      // Replace this with your actual search logic
-      alert("Performing search...");
-    }
-  });
+  generateOptions(2020, 2100, "inputYear");
 });
 
 // Function to handle the 'Add' action

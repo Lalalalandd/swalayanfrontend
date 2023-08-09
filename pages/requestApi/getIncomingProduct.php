@@ -6,15 +6,6 @@ use GuzzleHttp\Exception\RequestException;
 $transactionEndpoint = $endpoint; 
 $client = new \GuzzleHttp\Client();
 try {
-    // Lakukan permintaan dengan Guzzle
-    // $response = $client->request('GET', $incomingEndpoint, [
-    //     'headers' => [
-    //         'Authorization' => 'Bearer ' . $_SESSION['accessToken'],
-    //         'Content-Type' => 'application/json',
-    //     ]
-    // ]);
-
-    // $data = json_decode($response->getBody(), true);
 
     // Tampilkan data di halaman web
     if (isset ($productData["id_incomingproduct"])){
@@ -49,10 +40,6 @@ try {
             }
         }
 } catch (\GuzzleHttp\Exception\RequestException $e) {
-    // Jika terjadi kesalahan saat melakukan permintaan, tangani di sini
-    // if($e->getStatusCode() === 403){
-    //     session_destroy();
-    // }
     echo "Error: " . $e->getMessage();
 }
 
