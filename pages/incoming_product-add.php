@@ -190,7 +190,7 @@ include "../template/header.php";
                     ?>
                       <tr>
                         <td><input type="checkbox" value="<?= $id ?>" name="productCheckbox[]" /></td> <!-- Add a checkbox for each row -->
-                        <td><input type="number" name="stock[]" min="0" value="<?= $stock ?>" /></td>
+                        <td><input type="number" name="stock[]" value="1" min="1" /></td>
                         <td><?= $id ?></td>
                         <td><?= $name ?></td>
                         <td><?= $product_desc ?></td>

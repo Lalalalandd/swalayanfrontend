@@ -33,7 +33,7 @@ include "../template/header.php";
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item"><a href="../pages/product.php">Product</a></li>
-                <li class="breadcrumb-item active"><a href="#">addProduct</a></li>
+                <li class="breadcrumb-item active"><a href="#">Add Product</a></li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -104,15 +104,15 @@ include "../template/header.php";
                       <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Nama Produk ">
                     </div>
                     <div class="form-group">
-                      <label for="price">price</label>
+                      <label for="price">Price</label>
                       <input type="text" class="form-control" id="price" name="price" placeholder="Masukkan price">
                     </div>
                     <div class="form-group">
-                      <label for="stock">stock</label>
+                      <label for="stock">Stock</label>
                       <input type="text" class="form-control" id="stock" name="stock" placeholder="Masukkan stock">
                     </div>
                     <div class="form-group">
-                      <label for="product_desc">product_desc</label>
+                      <label for="product_desc">Product Description</label>
                       <input type="text" class="form-control" id="product_desc" name="product_desc" placeholder="Masukkan product_desc">
                     </div>
 

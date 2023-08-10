@@ -192,7 +192,7 @@ include "../template/header.php";
                     ?>
                       <tr>
                         <td><input type="checkbox" value="<?= $id ?>" name="productCheckbox[]" class="checkbox"/></td> <!-- Add a checkbox for each row -->
-                        <td><input type="number" name="stock[]" min="0" value="<?= $stock ?>" /></td>
+                        <td><input type="number" name="stock[]" value="1" min="1" /></td>
                         <td><?= $id ?></td>
                         <td><?= $name ?></td>
                         <td><?= $price ?></td>

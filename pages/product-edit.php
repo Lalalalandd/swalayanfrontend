@@ -26,13 +26,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Edit Employee</h1>
+            <h1 class="m-0">Edit Product</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="../pages/employee.php">Employee</a></li>
-              <li class="breadcrumb-item active">Manage Employee</li>
+              <li class="breadcrumb-item"><a href="../pages/employee.php">Product</a></li>
+              <li class="breadcrumb-item active">Manage product</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -46,7 +46,7 @@
 
               <div class="card card-warning">
                 <div class="card-header">
-                  <h3 class="card-title">Edit Data Employee</h3>
+                  <h3 class="card-title">Edit Data product</h3>
                 </div>
                 <?php
                require '../vendor/autoload.php';
@@ -132,7 +132,7 @@
                   <input type="hidden" name="id" value="<?=$id?>">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="name">Employee name</label>
+                      <label for="name">Product name</label>
                       <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Nama" value="<?= $name ?>">
                     </div>
                     <div class="form-group">
