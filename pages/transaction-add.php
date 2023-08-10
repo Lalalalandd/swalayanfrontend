@@ -82,7 +82,6 @@ include "../template/header.php";
             <!-- Left col -->
             <!-- <section class="content"> -->
 
-
             <?php
             require '../vendor/autoload.php';
 
@@ -96,7 +95,6 @@ include "../template/header.php";
               $endpoint = '/api/product';
             }
             $endpointAdd = '/api/transaction/create'; // Ganti dengan endpoint untuk mengupdate data employee
-
 
             $client = new Client(['base_uri' => $baseUri]);
 
@@ -113,7 +111,6 @@ include "../template/header.php";
             } catch (\GuzzleHttp\Exception\RequestException $e) {
               echo 'Error: ' . $e->getMessage();
             }
-
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               $transactionItems = [];

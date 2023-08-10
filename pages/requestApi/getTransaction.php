@@ -7,16 +7,6 @@ $transactionEndpoint = $endpoint;
 $client = new \GuzzleHttp\Client();
 
 try {
-    // Lakukan permintaan dengan Guzzle
-    // $response = $client->request('GET', $transactionEndpoint, [
-    //     'headers' => [
-    //         'Authorization' => 'Bearer ' . $jwtToken,
-    //         'Content-Type' => 'application/json', 
-    //     ]
-    //     ]);
-
-    // $data = json_decode($response->getBody(), true);
-
     // Tampilkan data di halaman web
     if (isset($productData["id_trans"])) {
         echo '<tr>';

@@ -88,7 +88,6 @@ include "../template/header.php";
             use GuzzleHttp\Client;
 
             $baseUri = 'http://103.176.78.115:8093';
-            $baseUriTransaction = 'http://103.176.78.115:8093'; // Ganti dengan base URL API Anda
             if (isset($_GET["fnip"])) {
               $endpoint = '/api/incoming-products/nip/' . $_GET["fnip"];
             } else if (isset($_GET["inputYear"]) || isset($_GET["inputMonth"]) || isset($_GET["inputDate"])) {
@@ -105,7 +104,6 @@ include "../template/header.php";
             }
             $endpointAdd = '/api/incoming-products/add'; // Ganti dengan endpoint untuk mengupdate data employee
 
-
             $client = new Client(['base_uri' => $baseUri]);
 
             try {
@@ -120,45 +118,6 @@ include "../template/header.php";
               $productData = json_decode($response->getBody(), true);
             } catch (\GuzzleHttp\Exception\RequestException $e) {
               echo 'Error: ' . $e->getMessage();
-            }
-
-
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-              $transactionItems = [];
-              for ($i = 0; $i < count($_POST["productCheckbox"]); $i++) {
-                $transactionItems[] = [
-                  'id_product' => $_POST["productCheckbox"][$i],
-                  'quantity' => intval($_POST["stock"][$i])
-                ];
-              }
-              $newIncomingData = [
-                'nip' => $_SESSION['nip'],
-                "transactionItems" => $transactionItems,
-              ];
-              $client = new Client(['base_uri' => $baseUriTransaction]);
-
-              try {
-                $response = $client->post($endpointAdd, [
-                  'headers' => [
-                    'Authorization' => 'Bearer ' . $_SESSION['accessToken'], // Ganti dengan token akses Anda
-                    'Content-Type' => 'application/json',
-                  ],
-                  'json' => $newIncomingData,
-                ]);
-
-                $statusCode = $response->getStatusCode();
-                $responseData = json_decode($response->getBody(), true);
-
-                // Proses response jika perlu
-                if ($statusCode === 200) {
-
-                  // Tambahan aksi jika perlu
-                } else {
-                  echo 'Failed to add Incoming Product: ' . $responseData['message'];
-                }
-              } catch (\GuzzleHttp\Exception\RequestException $e) {
-                echo 'Error: ' . $e->getMessage();
-              }
             }
             ?>
 
@@ -283,27 +242,6 @@ include "../template/header.php";
       </div>
     </div>
   </div>
-
-  <!-- <div class="modal fade" id="confirmationDeleteModalLabel" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteModalLabel"
-                aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure to delete this transaction?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary bg-danger" onclick="deleteItem()"><a href="?delete=<?php echo $incoming['id']; ?>">Delete</a></button>
-        </div>
-      </div>
-    </div>
-  </div> -->
 
   <script>
     // Get the searchOption element
